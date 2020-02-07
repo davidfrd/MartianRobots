@@ -1,6 +1,6 @@
-const Coordinate = require('../coordinate/coordinate').Coordinate
-const Instructions = require('./instructions').Instructions
-const Orientation = require('../orientation/orientation').Orientation
+const { Coordinate } = require('../coordinate/coordinate');
+const { RobotInstructions } = require('../../robotInstructions/robotInstructions');
+const { Orientation } = require('../orientation/orientation');
 
 class Robot {
 
@@ -36,7 +36,7 @@ class Robot {
     }
 
     execInstruction(instruction) {
-        Instructions[instruction](this);
+        RobotInstructions[instruction](this);
     }
 
     move(length) {

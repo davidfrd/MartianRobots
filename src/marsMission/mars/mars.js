@@ -1,4 +1,4 @@
-const Coordinate = require('../coordinate/coordinate').Coordinate
+const { Coordinate } = require('../coordinate/coordinate');
 
 class Mars {
 

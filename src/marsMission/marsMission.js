@@ -1,5 +1,5 @@
-const Mars = require('./mars/mars').Mars
-const Robot = require('./robot/robot').Robot
+const { Mars } = require('./mars/mars');
+const { Robot } = require('./robot/robot');
 
 class MarsMission {
 
@@ -7,6 +7,13 @@ class MarsMission {
         this.mars = new Mars(marsXCoord, marsYCoord);
         this.scents = []; // Array of coordinates with the scents
         this.robots = []; // Array of robots in Mars
+    }
+
+    static async executeMission(missionInstructions) {
+        let marsLengthInstruction = missionInstructions.shift();
+        let marsMission = marsLengthInstruction.command(marsLengthInstruction.data);
+        missionInstructions.forEach(instruction => instruction.command(instruction.data, marsMission));
+        return marsMission.getRobotsStatusString();
     }
 
     addRobot(posX, posY, orientation) {
@@ -34,7 +41,6 @@ class MarsMission {
             lastRobot.setLost(true);
             this.createScent(lastRobot.getPosition());
         }
-        console.log(lastRobot.getPosition(), lastRobot.getOrientation(), lastRobot.getLost(), instruction)
     }
 
     isTheRobotInsideMars(predictedRobotPosition) {
@@ -58,14 +64,15 @@ class MarsMission {
         return this.robots[this.robots.length - 1];
     }
 
-    getResult() {
-        console.log(`Getting Results of ${this.robots.length}`);
+    getRobotsStatusString() {
+        let robotsStatusesString = "";
         this.robots.forEach(robot => {
             const robotPosition = robot.getPosition();
             const robotLost = robot.getLost();
             const robotOrientation = robot.getOrientation();
-            console.log(`${robotPosition.x} ${robotPosition.y} ${robotOrientation} ${robotLost? "LOST" : ""}`);
+            robotsStatusesString += `${robotPosition.x} ${robotPosition.y} ${robotOrientation} ${robotLost ? "LOST" : ""}\n`;
         });
+        return robotsStatusesString;
     }
 
 }
