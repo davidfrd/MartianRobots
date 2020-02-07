@@ -3,12 +3,14 @@ const { MarsMission } = require('./marsMission/marsMission');
 const Config = require('./config/config');
 
 
-async function run() {
-    return InstructionsReader.getMissionInstructionsList(Config.instructionsFile.filename,
-        Config.instructionsFile.encoding, 
-        Config.instructionsFile.returnCarriageCharacter)
+async function run(fileName) {
+    return InstructionsReader.getMissionInstructionsList(fileName)
         .then(MarsMission.executeMission);
 }
 
 
-run().then(console.log).catch(console.log)
+run(Config.instructionsFile.fileName).then(console.log).catch(console.log)
+
+module.exports = {
+    run
+}

@@ -70,7 +70,7 @@ class MarsMission {
             const robotPosition = robot.getPosition();
             const robotLost = robot.getLost();
             const robotOrientation = robot.getOrientation();
-            robotsStatusesString += `${robotPosition.x} ${robotPosition.y} ${robotOrientation} ${robotLost ? "LOST" : ""}\n`;
+            robotsStatusesString += `${robotPosition.x} ${robotPosition.y} ${robotOrientation}${robotLost ? " LOST" : ""}\n`;
         });
         return robotsStatusesString;
     }

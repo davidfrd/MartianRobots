@@ -12,32 +12,32 @@ const LINES_INDEXES = {
 
 class InstructionsReader {
 
-    static async getMissionInstructionsList(fileName, encoding, returnCarriageCharacter) {
-        return InstructionsReader.getLinesFromFile(fileName, encoding, returnCarriageCharacter)
+    static async getMissionInstructionsList(fileName) {
+        return InstructionsReader.getLinesFromFile(fileName)
             .then(InstructionsReader.createMissionInstructionsList);
     }
 
-    static async getLinesFromFile(fileName, encoding, returnCarriageCharacter) {
-        let content = fs.readFileSync(fileName, encoding);
-        return content.split(returnCarriageCharacter);
+    static async getLinesFromFile(fileName) {
+        let content = fs.readFileSync(fileName, Config.encoding);
+        return content.split(Config.instructionsFile.returnCarriageCharacter);
     }
 
     static async createMissionInstructionsList(fileLines) {
         let missionInstructions = [];
         const marsLengthData = fileLines.shift().split(Config.marsUpperLeftCornerSeparator).map(Utils.convertStringsIntoNumber);
         InstructionsReader.checkMarsLengthData(marsLengthData);
-        missionInstructions.push({ command: MissionCommands.MARS_LENGTH, data: marsLengthData });
+        missionInstructions.push({ command: MissionCommands.INIT_MARS_MISSION, data: marsLengthData });
         fileLines.forEach((line, index) => {
             switch (index % Object.keys(LINES_INDEXES).length) {
                 case LINES_INDEXES.ROBOT_INITIAL_STATUS:
                     const robotCreationData = line.split(Config.robotInitialStatusSeparator).map(Utils.convertStringsIntoNumber);
                     InstructionsReader.checkRobotCreationData(robotCreationData);
-                    missionInstructions.push({ command: MissionCommands.ROBOT_CREATION, data: robotCreationData });
+                    missionInstructions.push({ command: MissionCommands.CREATE_ROBOT, data: robotCreationData });
                     break;
                 case LINES_INDEXES.INSTRUCTION:
                     const robotInstructionsData = line.split(Config.robotInstructionsSeparator).map(Utils.convertStringsIntoNumber);
                     InstructionsReader.checkRobotInstructionsData(robotInstructionsData);
-                    missionInstructions.push({ command: MissionCommands.ROBOT_INSTRUCTIONS, data: robotInstructionsData });
+                    missionInstructions.push({ command: MissionCommands.MOVE_ROBOT, data: robotInstructionsData });
                     break;
             }
         });
@@ -62,7 +62,7 @@ class InstructionsReader {
     }
 
     static checkCoordinate(coord) {
-        return 0 <= coord <= 50 && typeof coord === 'number';
+        return 0 <= coord && coord <= 50 && typeof coord === 'number';
     }
 
     static checkRobotOrientation(orientation) {
@@ -70,7 +70,7 @@ class InstructionsReader {
     }
 
     static checkRobotInstructionsData(instructions) {
-        if (1 > instructions.length > 100) {
+        if (1 > instructions.length && instructinos.length > 100) {
             throw `Robot Instruction ${instructions} length should be between 1 and 100`;
         }
 

@@ -1,7 +1,7 @@
 module.exports = {
+    encoding: 'utf8',
     instructionsFile: {
-        filename: 'src/instructions.txt',
-        encoding: 'utf8',
+        fileName: 'examples/input.txt',
         returnCarriageCharacter: '\n',
     },
     marsUpperLeftCornerSeparator: ' ',
