@@ -23,7 +23,7 @@ describe("addRobot", () => {
 
     test("should pass orientation fine", () => {
         const lastRobot = marsMission.getLastRobot();
-        expect(lastRobot.getOrientation()).toEqual("W");
+        expect(lastRobot.getOrientationString()).toEqual("W");
     });
 
 });
@@ -40,7 +40,7 @@ describe("applyInstructionLastRobot", () => {
         marsMission.applyInstructionLastRobot("F");
         const lastRobot = marsMission.getLastRobot();
         expect(lastRobot.getPosition()).toEqual({ x: 1, y: 0 });
-        expect(lastRobot.getOrientation()).toEqual("S");
+        expect(lastRobot.getOrientationString()).toEqual("S");
         expect(lastRobot.getLost()).toBeFalsy();
 
     });
@@ -65,7 +65,7 @@ describe("applyInstructionLastRobot", () => {
 
         test("robot should stay in the same coord and orientation", () => {
             expect(marsMission.getLastRobot().getPosition()).toEqual({x: 1, y: 2});
-            expect(marsMission.getLastRobot().getOrientation()).toEqual("N");
+            expect(marsMission.getLastRobot().getOrientationString()).toEqual("N");
         })
     })
 });

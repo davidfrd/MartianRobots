@@ -1,12 +1,14 @@
 const { Coordinate } = require('../coordinate/coordinate');
 const { RobotInstructions } = require('../../robotInstructions/robotInstructions');
 const { Orientation } = require('../orientation/orientation');
+const Utils = require('../../utils/utils');
+
 
 class Robot {
 
     constructor(posX, posY, orientation) {
         this.predictedPosition = new Coordinate(posX, posY);
-        this.predictedRotation = Orientation[orientation];
+        this.predictedOrientation = Orientation[orientation];
         this.lost = false;
         this.applyChanges();
     }
@@ -27,20 +29,20 @@ class Robot {
         return this.lost;
     }
 
-    getRotation() {
-        return this.rotation;
-    }
-
     getOrientation() {
-        return Object.keys(Orientation).find(k => Orientation[k] === this.rotation);
+        return this.orientation;
     }
 
-    execInstruction(instruction) {
-        RobotInstructions[instruction](this);
+    getOrientationString() {
+        return Object.keys(Orientation).find(k => Orientation[k] === this.orientation);
+    }
+
+    execInstruction(robotInstruction) {
+        RobotInstructions[robotInstruction](this);
     }
 
     move(length) {
-        let rotationInRad = this.rotation * Math.PI / 2;
+        let rotationInRad = this.orientation * Math.PI / 2;
         // Math.round() is used because in JS Math.sin(Math.PI) !== 0
         this.predictedPosition.x = this.position.x + length * Math.cos(rotationInRad).toFixed(2);
         this.predictedPosition.y = this.position.y + length * Math.sin(rotationInRad).toFixed(2);
@@ -48,18 +50,18 @@ class Robot {
 
     rotate(rotation) {
         // fix rotation betwen [0-3]
-        this.predictedRotation = (this.predictedRotation + rotation) % Object.keys(Orientation).length;
-        this.predictedRotation = this.predictedRotation < 0 ? this.predictedRotation + Object.keys(Orientation).length : this.predictedRotation;
+        this.predictedOrientation = (this.orientation + rotation) % Object.keys(Orientation).length;
+        this.predictedOrientation = this.orientation < 0 ? this.predictedOrientation + Object.keys(Orientation).length : this.predictedOrientation;
     }
 
     applyChanges() {
-        this.position = Object.assign({}, this.predictedPosition);
-        this.rotation = this.predictedRotation;
+        this.position = Utils.copyObject(this.predictedPosition);
+        this.orientation = this.predictedOrientation;
     }
 
     resetChanges() {
-        this.predictedPosition = Object.assign({}, this.position);
-        this.predictedRotation = this.rotation;
+        this.predictedPosition = Utils.copyObject(this.position);
+        this.predictedOrientation = this.orientation;
     }
 
 }

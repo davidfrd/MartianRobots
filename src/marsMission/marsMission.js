@@ -74,7 +74,7 @@ class MarsMission {
         this.robots.forEach(robot => {
             const robotPosition = robot.getPosition();
             const robotLost = robot.getLost();
-            const robotOrientation = robot.getOrientation();
+            const robotOrientation = robot.getOrientationString();
             robotsStatusesString += `${robotPosition.x} ${robotPosition.y} ${robotOrientation}${robotLost ? " LOST" : ""}\n`;
         });
         return robotsStatusesString;
