@@ -52,12 +52,17 @@ class MarsMission {
 
     thisPositionHaveScent(position) {
         return this.scents.find(scentPos =>
-            scentPos.x === position.x || this.scents.y === position.y
+            scentPos.x === position.x || scentPos.y === position.y
         );
     }
 
     createScent(position) {
-        this.scents.push(position);
+        const marsLeftBottomCorner = this.mars.getLeftBottomCorner();
+        const marsRightUpperCorner = this.mars.getRightUpperCorner();
+        if (marsLeftBottomCorner.x === position.x || marsLeftBottomCorner.y === position.y ||
+            marsRightUpperCorner.x === position.x || marsRightUpperCorner.y === position.y) {
+            this.scents.push(position);
+        }
     }
 
     getLastRobot() {

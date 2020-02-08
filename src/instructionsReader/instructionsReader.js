@@ -70,7 +70,7 @@ class InstructionsReader {
     }
 
     static checkRobotInstructionsData(instructions) {
-        if (1 > instructions.length && instructinos.length > 100) {
+        if (instructions.length < 1 || instructions.length > 100) {
             throw `Robot Instruction ${instructions} length should be between 1 and 100`;
         }
 

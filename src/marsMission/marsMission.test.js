@@ -97,10 +97,35 @@ describe("isTheRobotInsideMars", () => {
     });
 });
 
+describe("thisPositionHaveScent", () => {
+
+    let marsMission;
+    beforeEach( () => {
+        marsMission = new MarsMission(2, 3);
+    });
+
+    test("when have scent in one border", () => {
+        const pos = {x: 1, y: 3}
+        marsMission.createScent(pos);
+        expect(marsMission.thisPositionHaveScent(pos)).toBeTruthy();
+    });
+
+    test("when have scent in two borders", () => {
+        marsMission.createScent({x: 2, y: 3});
+        expect(marsMission.thisPositionHaveScent({x: 0, y: 3})).toBeTruthy();
+        expect(marsMission.thisPositionHaveScent({x: 2, y: 0})).toBeTruthy();
+    });
+
+    test("when the border have no scent", () => {
+        marsMission.createScent({x: 1, y: 1});
+        expect(marsMission.thisPositionHaveScent({x: 0, y: 0})).toBeFalsy();
+    });
+});
+
 
 describe("createScent", () => {
 
-    test("add scent to scents array", () => {
+    test("should add if is in the border", () => {
         let marsMission;
         marsMission = new MarsMission(1, 2);
 
@@ -111,6 +136,19 @@ describe("createScent", () => {
         const pos2 = {x: 1, y: 0};
         marsMission.createScent(pos2);
         expect(marsMission.scents).toContain(pos2);
+    });
+
+    test("shouldn't add if is not in the border", () => {
+        let marsMission;
+        marsMission = new MarsMission(2, 2);
+
+        const pos1 = {x: 1, y: 1};
+        marsMission.createScent(pos1);
+        expect(marsMission.scents).not.toContain(pos1);
+
+        const pos2 = {x: -1, y: -1};
+        marsMission.createScent(pos2);
+        expect(marsMission.scents).not.toContain(pos2);
     });
 
 });

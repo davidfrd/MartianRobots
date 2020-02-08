@@ -145,7 +145,7 @@ describe("checkRobotInstructionsData", () => {
 
     describe("given an invalid data", () => {
         test("too long", () => {
-            expect(() => InstructionsReader.checkRobotInstructionsData(["F"] * 101)).toThrowError();
+            expect(() => InstructionsReader.checkRobotInstructionsData("F".repeat(101).split(''))).toThrowError();
 
         });
 
