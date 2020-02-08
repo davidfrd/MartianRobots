@@ -14,7 +14,7 @@ beforeEach(() => {
 describe("INIT_MARS_MISSION", () => {
 
     test("should create mars mission", () => {
-        
+
         expect(marsMission).toMatchObject(new MarsMission(posX, posY));
     });
 });

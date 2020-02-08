@@ -64,7 +64,7 @@ describe("applyInstructionLastRobot", () => {
         })
 
         test("robot should stay in the same coord and orientation", () => {
-            expect(marsMission.getLastRobot().getPosition()).toEqual({x: 1, y: 2});
+            expect(marsMission.getLastRobot().getPosition()).toEqual({ x: 1, y: 2 });
             expect(marsMission.getLastRobot().getOrientationString()).toEqual("N");
         })
     })
@@ -80,45 +80,45 @@ describe("isTheRobotInsideMars", () => {
     });
 
     test("robot inside mars", () => {
-        expect(marsMission.isTheRobotInsideMars({x: 0, y: 0})).toBeTruthy();
-        expect(marsMission.isTheRobotInsideMars({x: 0, y: 1})).toBeTruthy();
-        expect(marsMission.isTheRobotInsideMars({x: 0, y: 2})).toBeTruthy();
-        expect(marsMission.isTheRobotInsideMars({x: 1, y: 0})).toBeTruthy();
-        expect(marsMission.isTheRobotInsideMars({x: 1, y: 1})).toBeTruthy();
-        expect(marsMission.isTheRobotInsideMars({x: 1, y: 2})).toBeTruthy();
+        expect(marsMission.isTheRobotInsideMars({ x: 0, y: 0 })).toBeTruthy();
+        expect(marsMission.isTheRobotInsideMars({ x: 0, y: 1 })).toBeTruthy();
+        expect(marsMission.isTheRobotInsideMars({ x: 0, y: 2 })).toBeTruthy();
+        expect(marsMission.isTheRobotInsideMars({ x: 1, y: 0 })).toBeTruthy();
+        expect(marsMission.isTheRobotInsideMars({ x: 1, y: 1 })).toBeTruthy();
+        expect(marsMission.isTheRobotInsideMars({ x: 1, y: 2 })).toBeTruthy();
     });
 
     test("robot outside mars", () => {
-        expect(marsMission.isTheRobotInsideMars({x: -1, y: 1})).toBeFalsy();
-        expect(marsMission.isTheRobotInsideMars({x: 10, y: 2})).toBeFalsy();
-        expect(marsMission.isTheRobotInsideMars({x: 1, y: 4})).toBeFalsy();
-        expect(marsMission.isTheRobotInsideMars({x: 1, y: -6})).toBeFalsy();
-        expect(marsMission.isTheRobotInsideMars({x: -5, y: -9})).toBeFalsy();
+        expect(marsMission.isTheRobotInsideMars({ x: -1, y: 1 })).toBeFalsy();
+        expect(marsMission.isTheRobotInsideMars({ x: 10, y: 2 })).toBeFalsy();
+        expect(marsMission.isTheRobotInsideMars({ x: 1, y: 4 })).toBeFalsy();
+        expect(marsMission.isTheRobotInsideMars({ x: 1, y: -6 })).toBeFalsy();
+        expect(marsMission.isTheRobotInsideMars({ x: -5, y: -9 })).toBeFalsy();
     });
 });
 
 describe("thisPositionHaveScent", () => {
 
     let marsMission;
-    beforeEach( () => {
+    beforeEach(() => {
         marsMission = new MarsMission(2, 3);
     });
 
     test("when have scent in one border", () => {
-        const pos = {x: 1, y: 3}
+        const pos = { x: 1, y: 3 }
         marsMission.createScent(pos);
         expect(marsMission.thisPositionHaveScent(pos)).toBeTruthy();
     });
 
     test("when have scent in two borders", () => {
-        marsMission.createScent({x: 2, y: 3});
-        expect(marsMission.thisPositionHaveScent({x: 0, y: 3})).toBeTruthy();
-        expect(marsMission.thisPositionHaveScent({x: 2, y: 0})).toBeTruthy();
+        marsMission.createScent({ x: 2, y: 3 });
+        expect(marsMission.thisPositionHaveScent({ x: 0, y: 3 })).toBeTruthy();
+        expect(marsMission.thisPositionHaveScent({ x: 2, y: 0 })).toBeTruthy();
     });
 
     test("when the border have no scent", () => {
-        marsMission.createScent({x: 1, y: 1});
-        expect(marsMission.thisPositionHaveScent({x: 0, y: 0})).toBeFalsy();
+        marsMission.createScent({ x: 1, y: 1 });
+        expect(marsMission.thisPositionHaveScent({ x: 0, y: 0 })).toBeFalsy();
     });
 });
 
@@ -129,11 +129,11 @@ describe("createScent", () => {
         let marsMission;
         marsMission = new MarsMission(1, 2);
 
-        const pos1 = {x: 0, y: 2};
+        const pos1 = { x: 0, y: 2 };
         marsMission.createScent(pos1);
         expect(marsMission.scents).toContain(pos1);
 
-        const pos2 = {x: 1, y: 0};
+        const pos2 = { x: 1, y: 0 };
         marsMission.createScent(pos2);
         expect(marsMission.scents).toContain(pos2);
     });
@@ -142,11 +142,11 @@ describe("createScent", () => {
         let marsMission;
         marsMission = new MarsMission(2, 2);
 
-        const pos1 = {x: 1, y: 1};
+        const pos1 = { x: 1, y: 1 };
         marsMission.createScent(pos1);
         expect(marsMission.scents).not.toContain(pos1);
 
-        const pos2 = {x: -1, y: -1};
+        const pos2 = { x: -1, y: -1 };
         marsMission.createScent(pos2);
         expect(marsMission.scents).not.toContain(pos2);
     });

@@ -14,7 +14,7 @@ beforeEach(() => {
 describe("constructor", () => {
 
     test("should create robot with the right values", () => {
-       
+
         expect(robot.position).toMatchObject(new Coordinate(posX, posY));
         expect(robot.predictedPosition).toMatchObject(new Coordinate(posX, posY));
         expect(robot.orientation).toEqual(Orientation.W);
@@ -80,9 +80,9 @@ describe("getOrientationString", () => {
     });
 });
 
-describe("execInstruction",() => {
+describe("execInstruction", () => {
 
-    test("should apply instruction to the robot",() => {
+    test("should apply instruction to the robot", () => {
         const instruction = "F";
         robot.execInstruction(instruction);
 

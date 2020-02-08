@@ -10,8 +10,8 @@ describe("Application test", () => {
         promises.push(readFilePromise('examples/output.txt', Config.encoding));
         promises.push(Application.run('examples/input.txt'));
         Promise.all(promises).then(
-            ([resultA, resultB]) =>  expect(resultA).toEqual(resultB)
+            ([resultA, resultB]) => expect(resultA).toEqual(resultB)
         )
     });
- 
+
 });

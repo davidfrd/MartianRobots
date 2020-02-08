@@ -1,5 +1,5 @@
-const {Mars} = require('./mars');
-const {Coordinate} = require('../coordinate/coordinate');
+const { Mars } = require('./mars');
+const { Coordinate } = require('../coordinate/coordinate');
 
 
 
@@ -20,7 +20,7 @@ describe("constructor", () => {
 });
 
 describe("getLeftBottomCorner", () => {
-    
+
     test("should return left bottom corner", () => {
         const mars = new Mars(5, 5);
         expect(mars.getLeftBottomCorner()).toEqual(mars.leftBottomCorner);
@@ -28,7 +28,7 @@ describe("getLeftBottomCorner", () => {
 });
 
 describe("getRightUpperCorner", () => {
-    
+
     test("should return right upper corner", () => {
         const mars = new Mars(5, 5);
         expect(mars.getRightUpperCorner()).toEqual(mars.rightUpperCorner);
