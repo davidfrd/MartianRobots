@@ -1,16 +1,17 @@
 # Martian robots
 Problem solving for Martian Robots
 
+[![Coverage Status](https://coveralls.io/repos/github/davidfrd/MartianRobots/badge.svg?branch=coveralls)](https://coveralls.io/github/davidfrd/MartianRobots?branch=coveralls)
 
 ## Execution
 ```
-npm install && npm start
+$ npm install && npm start < INSTRUCTIONS_PATH
 ```
 
 ## Docker
 ```
-docker build -t martian-robot .
-docker run -i martian-robot < INSTRUCTIONS_PATH
+$ docker build -t martian-robot .
+$ docker run -i martian-robot < INSTRUCTIONS_PATH
 ```
 
 ## The Problem
