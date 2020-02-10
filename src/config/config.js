@@ -1,7 +1,7 @@
 module.exports = {
     encoding: 'utf8',
     instructionsFile: {
-        fileName: 'examples/input.txt',
+        fileName: process.stdin.fd,
         returnCarriageCharacter: '\n',
     },
     marsUpperLeftCornerSeparator: ' ',

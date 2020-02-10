@@ -3,6 +3,8 @@ const { MissionCommands } = require('../missionCommands/missionCommands');
 const Config = require('../config/config')
 
 describe("Instruction Reader test", () => {
+
+    const fileName = 'examples/input.txt';
     const expectedLines = [
         "5 3",
         "1 1 E",
@@ -24,12 +26,12 @@ describe("Instruction Reader test", () => {
     ]
 
     test("Should return missionInstructions", async () => {
-        const missionInstructions = await InstructionsReader.getMissionInstructionsList(Config.instructionsFile.fileName);
+        const missionInstructions = await InstructionsReader.getMissionInstructionsList(fileName);
         expect(missionInstructions).toEqual(expectedMissionInstructions);
     });
 
     test("Should return lines splited ", async () => {
-        const lines = await InstructionsReader.getLinesFromFile(Config.instructionsFile.fileName);
+        const lines = await InstructionsReader.getLinesFromFile(fileName);
         expect(lines).toEqual(expectedLines);
     });
 
