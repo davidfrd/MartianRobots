@@ -1,7 +1,7 @@
 # Martian robots
 Problem solving for Martian Robots
 
-[![Coverage Status](https://coveralls.io/repos/github/davidfrd/MartianRobots/badge.svg?branch=coveralls)](https://coveralls.io/github/davidfrd/MartianRobots?branch=coveralls)
+[![Coverage Status](https://coveralls.io/repos/github/davidfrd/MartianRobots/badge.svg?branch=master)](https://coveralls.io/github/davidfrd/MartianRobots?branch=master)
 
 ## Execution
 ```
