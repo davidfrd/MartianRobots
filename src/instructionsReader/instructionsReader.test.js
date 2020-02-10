@@ -25,18 +25,18 @@ describe("Instruction Reader test", () => {
         { command: MissionCommands.MOVE_ROBOT, data: ["L", "L", "F", "F", "F", "L", "F", "L", "F", "L"] },
     ]
 
-    test("Should return missionInstructions", async () => {
-        const missionInstructions = await InstructionsReader.getMissionInstructionsList(fileName);
+    test("Should return missionInstructions", () => {
+        const missionInstructions = InstructionsReader.getMissionInstructionsList(fileName);
         expect(missionInstructions).toEqual(expectedMissionInstructions);
     });
 
-    test("Should return lines splited ", async () => {
-        const lines = await InstructionsReader.getLinesFromFile(fileName);
+    test("Should return lines splited ", () => {
+        const lines = InstructionsReader.getLinesFromFile(fileName);
         expect(lines).toEqual(expectedLines);
     });
 
-    test("Should return missionInstructions from file lines", async () => {
-        const missionInstructions = await InstructionsReader.createMissionInstructionsList(expectedLines);
+    test("Should return missionInstructions from file lines", () => {
+        const missionInstructions = InstructionsReader.createMissionInstructionsList(expectedLines);
         expect(missionInstructions).toEqual(expectedMissionInstructions);
     })
 

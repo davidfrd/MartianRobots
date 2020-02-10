@@ -12,17 +12,17 @@ const LINES_INDEXES = {
 
 class InstructionsReader {
 
-    static async getMissionInstructionsList(fileName) {
-        return InstructionsReader.getLinesFromFile(fileName)
-            .then(InstructionsReader.createMissionInstructionsList);
+    static getMissionInstructionsList(fileName) {
+        let lines = InstructionsReader.getLinesFromFile(fileName);
+        return InstructionsReader.createMissionInstructionsList(lines);
     }
 
-    static async getLinesFromFile(fileName) {
+    static getLinesFromFile(fileName) {
         let content = fs.readFileSync(fileName, Config.encoding);
         return content.split(Config.instructionsFile.returnCarriageCharacter);
     }
 
-    static async createMissionInstructionsList(fileLines) {
+    static createMissionInstructionsList(fileLines) {
         let missionInstructions = [];
         const marsLengthData = fileLines.shift().split(Config.marsUpperLeftCornerSeparator).map(Utils.convertStringsIntoNumber);
         InstructionsReader.checkMarsLengthData(marsLengthData);

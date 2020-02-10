@@ -4,14 +4,10 @@ const util = require('util');
 const Config = require('./config/config');
 
 describe("Application test", () => {
-    test("Should generate correct output", () => {
-        let promises = [];
-        const readFilePromise = util.promisify(fs.readFile)
-        promises.push(readFilePromise('examples/output.txt', Config.encoding));
-        promises.push(Application.run('examples/input.txt'));
-        Promise.all(promises).then(
-            ([resultA, resultB]) => expect(resultA).toEqual(resultB)
-        )
+    test("Should generate correct output", async () => {
+        const expectedOutput = fs.readFileSync('./examples/output.txt', Config.encoding);
+        const output = await Application.run('./examples/input.txt');
+        expect(output).toEqual(expectedOutput);
     });
 
 });
