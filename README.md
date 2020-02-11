@@ -1,17 +1,28 @@
 # Martian robots
-Problem solving for Martian Robots
+This is an exercise that solves Martian Robot Problem challenge for GuideSmiths.
 
 [![Coverage Status](https://coveralls.io/repos/github/davidfrd/MartianRobots/badge.svg?branch=master)](https://coveralls.io/github/davidfrd/MartianRobots?branch=master)
 
 ## Execution
 ```
-$ npm install && npm start < INSTRUCTIONS_PATH
+$ npm install
+$ npm start < INSTRUCTIONS_PATH
 ```
 
-## Docker
+## How to run with Docker
+### Previous requirements 
+To execute the application with docker, you should install it previously. 
+
+See how to install on https://docs.docker.com/install/
+
+### Build image
 ```
-$ docker build -t martian-robot .
-$ docker run -i martian-robot < INSTRUCTIONS_PATH
+$ docker build -t martian-robots .
+```
+
+### Run container
+```
+$ docker run -i martian-robots < INSTRUCTIONS_PATH
 ```
 
 ## The Problem
